@@ -7,6 +7,7 @@ export const useContentful = () => {
         host: 'preview.contentful.com',
     })
 
+    // todo needs query
     const getRecipes = async () => {
         try {
             const entries = await client.getEntries({
