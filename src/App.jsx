@@ -1,22 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from 'react';
-import { useContentful } from './useContentful';
-import Recipe from "./components/Recipe";
+import { useContentful } from './services/useContentful';
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Main from "./components/Main";
 
 function App() {
-    const [recipies, setRecipies] = useState([]);
-    const { getRecipies } = useContentful();
+    const { getRecipes } = useContentful();
+    const [recipes, setRecipes] = useState([]);
 
      useEffect(() => {
-      getRecipies().then(response => setRecipies(response));
-    })
+      getRecipes().then(response => setRecipes(response));
+    }, [])
 
     return (
       <div className="App">
-          {
-              recipies.map(recipe => <Recipe key={recipe.id} recipe={recipe} />)
-          }
+          <Navbar />
+          <Main recipes={recipes} />
+          <Footer />
       </div>
   );
 }

@@ -1,0 +1,26 @@
+/* GLOBAL CSS */
+h1 {
+    font-size: 1.8em;
+}
+h2 {
+    font-size: 1em;
+}
+h3 {
+    font-size: 1.2em;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* HEADER STYLES */
+nav div {
+    display: flex;
+    justify-content: center;
+}
+.container {
+    max-width: 860px;
+}

@@ -7,7 +7,7 @@ export const useContentful = () => {
         host: 'preview.contentful.com',
     })
 
-    const getRecipies = async () => {
+    const getRecipes = async () => {
         try {
             const entries = await client.getEntries({
                 content_type: 'cookbook',
@@ -16,10 +16,12 @@ export const useContentful = () => {
 
             const sanitisedEntries = entries.items.map((item) => {
                 const id = item.sys.id
+                const imagePaths = item.fields.images.map((image) => image.fields.file.url)
 
                 return {
                     ...item.fields,
-                    id
+                    id,
+                    imagePaths
                 }
             })
 
@@ -28,5 +30,5 @@ export const useContentful = () => {
             console.log(e)
         }
     }
-    return { getRecipies }
+    return { getRecipes }
 }
