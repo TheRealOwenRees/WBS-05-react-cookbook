@@ -8,15 +8,29 @@ import Main from "./components/Main";
 function App() {
     const { getRecipes } = useContentful();
     const [recipes, setRecipes] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [availableCategories, setAvailableCategories] = useState([]);
 
      useEffect(() => {
-      getRecipes().then(response => setRecipes(response));
+      getRecipes()
+          .then(response => setRecipes(response));
     }, [])
 
     return (
       <div className="App">
-          <Header />
-          <Main recipes={recipes} />
+          <Header
+              availableCategories={availableCategories}
+              setSelectedCategories={setSelectedCategories}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+          />
+          <Main
+              recipes={recipes}
+              searchTerm={searchTerm}
+              selectedCategories={selectedCategories}
+              setAvailableCategories={setAvailableCategories}
+          />
           <Footer />
       </div>
   );
