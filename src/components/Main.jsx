@@ -8,11 +8,21 @@ const Main = ({ recipes }) => {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [availableCategories, setAvailableCategories] = useState([]);
 
+    // todo TRY TO MAKE THIS WORK WITH DEFAULT VALUES IN STATE
     useEffect(() => {
         setFilteredRecipes(recipes)
     },[recipes])
 
-    // MAKE THIS FUNCTION ONLY ADD ONE OF EACH CATEGORY, RATHER THAN IN FOODCATEGORIES
+    useEffect(() => {
+        const filtered = recipes.filter(recipe => {
+            return recipe.title.toLowerCase().includes(searchTerm) && selectedCategories.every(category =>
+                category.value === recipe.categories)
+        })
+        console.log(filtered)
+        setFilteredRecipes(filtered)
+    }, [recipes, searchTerm, selectedCategories])
+
+    // todo MAKE THIS FUNCTION ONLY ADD ONE OF EACH CATEGORY, RATHER THAN IN FOOD CATEGORIES
     useEffect(() => {
         const categories = []
         filteredRecipes.forEach(recipe => categories.push({
@@ -24,7 +34,6 @@ const Main = ({ recipes }) => {
 
     const handleSearchOnChange = (e) => {
         setSearchTerm(e.target.value);
-        setFilteredRecipes(recipes.filter(recipe => recipe.title.toLowerCase().includes(e.target.value.toLowerCase())))
     }
 
     const handleCategoriesOnChange = (opt) => {
@@ -37,10 +46,6 @@ const Main = ({ recipes }) => {
                     return JSON.stringify(obj) === _value;
                 })  // adds only 1 of each category to the dropdown - removes duplicates
             })]
-
-    console.log('Available', availableCategories)
-    console.log('Selected', selectedCategories)
-    console.log('Dropdown', foodCategories)
 
     return(
         <main className="container p-4">
@@ -62,11 +67,11 @@ const Main = ({ recipes }) => {
                         isMulti
                         onChange={(opt) => handleCategoriesOnChange(opt)}
                         styles={{
-                            option: (provided, state) => ({
+                            option: (provided) => ({
                                 ...provided,
                                 textTransform: 'capitalize',
                             }),
-                            multiValue: (provided, state) => ({
+                            multiValue: (provided) => ({
                                 ...provided,
                                 textTransform: 'capitalize',
                             }),
