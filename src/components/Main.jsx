@@ -14,7 +14,7 @@ const Main = ({ recipes, searchTerm, selectedCategories, setAvailableCategories 
     useEffect(() => {
         const filtered = recipes.filter(recipe => {
             return recipe.title.toLowerCase().includes(searchTerm) && selectedCategories.every(category =>
-                category.value === recipe.categories)
+                category.value === recipe.categories[0])
         }) // is the category referencing the ID/index somehow?
         setFilteredRecipes([...filtered])
     }, [recipes, searchTerm, selectedCategories])
@@ -23,8 +23,8 @@ const Main = ({ recipes, searchTerm, selectedCategories, setAvailableCategories 
     useEffect(() => {
         const categories = []
         filteredRecipes.forEach(recipe => categories.push({
-            'label': recipe.categories,
-            'value': recipe.categories
+            'label': recipe.categories[0],
+            'value': recipe.categories[0]
         }))
         setAvailableCategories([...categories])
     }, [filteredRecipes])

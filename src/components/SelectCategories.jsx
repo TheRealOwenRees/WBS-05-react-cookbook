@@ -1,7 +1,7 @@
 import Select from "react-select";
 
 const SelectCategories = ({ availableCategories, setSelectedCategories }) => {
-
+    console.log(availableCategories)
     const foodCategories =
         // [{label: 'indian', value: 'indian'}]
         [...availableCategories.filter((value, index) => {
