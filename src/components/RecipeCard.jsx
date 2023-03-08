@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 const RecipeCard = ({ id, recipe, images }) => {
     return (
         <div className="col-12 col-md-6 py-3" key={id}>
-            <a href="#">
+            <Link to="/recipe">
                 <div>
                     <img src={images[0]} alt={recipe.title} style={
                         {
@@ -10,7 +12,7 @@ const RecipeCard = ({ id, recipe, images }) => {
                         }}/>
                 </div>
                 <h3 className="text-uppercase">{recipe.title}</h3>
-            </a>
+            </Link>
         </div>
     )
 }

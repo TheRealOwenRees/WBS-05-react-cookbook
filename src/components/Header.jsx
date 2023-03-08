@@ -2,15 +2,15 @@ import Navbar from "./Navbar";
 import SelectCategories from "./SelectCategories";
 import SearchBar from "./SearchBar";
 
-const Header = ({availableCategories, setSelectedCategories, searchTerm, setSearchTerm}) => {
+const Header = ({availableCategories, setSelectedCategories, searchTerm, setSearchTerm, details}) => {
 
     return (
         <>
         <Navbar />
             <div className="container py-4">
-                <div className="row">
+                <div className="row align-items-baseline">
                     <div className="col-8">
-                        <h2 className="text-uppercase">4 Recipes From All Over The World</h2>
+                        <h2 className="text-uppercase">{details}</h2>
                     </div>
                     <div className="col-4">
                         <SearchBar
@@ -19,7 +19,8 @@ const Header = ({availableCategories, setSelectedCategories, searchTerm, setSear
                         />
                         <SelectCategories
                             availableCategories={availableCategories}
-                            setSelectedCategories={setSelectedCategories} />
+                            setSelectedCategories={setSelectedCategories}
+                        />
                     </div>
                     <div className="col">
                         <hr />

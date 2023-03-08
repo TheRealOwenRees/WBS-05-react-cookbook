@@ -1,7 +1,7 @@
 import RecipeCard from "./RecipeCard";
 import {useEffect, useState} from "react";
 
-const Main = ({ recipes, searchTerm, selectedCategories, setAvailableCategories }) => {
+const Homepage = ({ recipes, searchTerm, selectedCategories, setAvailableCategories }) => {
 
     const [filteredRecipes, setFilteredRecipes] = useState([]);
 
@@ -10,7 +10,7 @@ const Main = ({ recipes, searchTerm, selectedCategories, setAvailableCategories 
         setFilteredRecipes(recipes)
     },[recipes])
 
-    // todo this is only returning 1 of each category, fix this
+    // todo only works for one category, fix
     useEffect(() => {
         const filtered = recipes.filter(recipe => {
             return recipe.title.toLowerCase().includes(searchTerm) && selectedCategories.every(category =>
@@ -36,9 +36,10 @@ const Main = ({ recipes, searchTerm, selectedCategories, setAvailableCategories 
                     filteredRecipes.map(recipe =>
                         <RecipeCard key={recipe.id} recipe={recipe} images={recipe.imagePaths} />)
                 }
+
             </div>
         </main>
     )
 }
 
-export default Main
+export default Homepage
