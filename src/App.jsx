@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { useContentful } from './services/useContentful';
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Homepage from "./components/Homepage";
@@ -13,6 +13,9 @@ function App() {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [availableCategories, setAvailableCategories] = useState([]);
+
+
+
     let details = `4 Recipes From Around The World`
 
     useEffect(() => {
@@ -37,7 +40,7 @@ function App() {
                             setAvailableCategories={setAvailableCategories}
                   />}
               />
-              <Route path="/recipe" element={<RecipeDetail />} />
+              <Route path="recipe/:name" element={<RecipeDetail />} />
           </Routes>
           <Footer />
       </div>

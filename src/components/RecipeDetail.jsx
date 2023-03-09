@@ -1,8 +1,17 @@
 import { Carousel} from "react-bootstrap";
+import { useParams, useLocation } from "react-router-dom"
 
 const RecipeDetail = () => {
+
+    const location = useLocation()
+    const data = location.state?.recipe
+
+    const { name } = useParams()
+    console.log(name)
+
     return (
         <div className="container p-4">
+            {data.title}
             <div className="row justify-content-center">
                 <div className="col-12 text-center">
                     <div className="row mt-2">

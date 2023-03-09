@@ -1,5 +1,6 @@
 import RecipeCard from "./RecipeCard";
 import {useEffect, useState} from "react";
+import { Link } from "react-router-dom"
 
 const Homepage = ({ recipes, searchTerm, selectedCategories, setAvailableCategories }) => {
 

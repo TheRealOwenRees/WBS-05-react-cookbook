@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 
 const RecipeCard = ({ id, recipe, images }) => {
+
     return (
         <div className="col-12 col-md-6 py-3" key={id}>
-            <Link to="/recipe">
+            <Link to={`recipe/${recipe.title}`} state={{recipe}}>
                 <div>
                     <img src={images[0]} alt={recipe.title} style={
                         {
