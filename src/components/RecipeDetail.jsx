@@ -1,74 +1,61 @@
-import { Carousel} from "react-bootstrap";
-import { useParams, useLocation } from "react-router-dom"
+import { Carousel } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
+import Markdown from "marked-react";
 
-const RecipeDetail = () => {
+function RecipeDetail() {
+  const location = useLocation();
+  const data = location.state?.recipe;
 
-    const location = useLocation()
-    const data = location.state?.recipe
+  const recipeCarousel = data.images.map((image) => (
+    <Carousel.Item>
+      <img
+        className="d-block w-100"
+        src={image.fields.file.url}
+        alt={data.title}
+      />
+      <Carousel.Caption>
+        <h3>{data.title}</h3>
+        <p>{data.description}</p>
+      </Carousel.Caption>
+    </Carousel.Item>
+  ));
 
-    const { name } = useParams()
-    console.log(name)
-
+  const ingredientTable = data.ingredientList.map((ingredient) => {
+    const elements = ingredient.split(/\s(?=\d)/);
     return (
-        <div className="container p-4">
-            {data.title}
-            <div className="row justify-content-center">
-                <div className="col-12 text-center">
-                    <div className="row mt-2">
-                        <Carousel>
-                            <Carousel.Item>
-                                <img
-                                    className="d-block w-100"
-                                    src="https://placehold.co/600x400"
-                                    alt="First slide"
-                                />
-                                <Carousel.Caption>
-                                    <h3>First slide label</h3>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img
-                                    className="d-block w-100"
-                                    src="https://placehold.co/600x400"
-                                    alt="Second slide"
-                                />
+      <tr>
+        <td>{elements[0]}</td>
+        <td>{elements[1]}</td>
+      </tr>
+    );
+  });
 
-                                <Carousel.Caption>
-                                    <h3>Second slide label</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img
-                                    className="d-block w-100"
-                                    src="https://placehold.co/600x400"
-                                    alt="Third slide"
-                                />
-
-                                <Carousel.Caption>
-                                    <h3>Third slide label</h3>
-                                    <p>
-                                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                                    </p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                        </Carousel>
-                    </div>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-12 col-md-6 my-4">
-                    <h3>Ingredients</h3>
-                    <hr />
-                </div>
-                <div className="col-12 col-md-6 my-4">
-                    <h3>Instructions</h3>
-                    <hr />
-                </div>
-            </div>
+  return (
+    <div className="container p-4">
+      {data.title}
+      <div className="row justify-content-center">
+        <div className="col-12 text-center">
+          <div className="row mt-2">
+            <Carousel>{recipeCarousel}</Carousel>
+          </div>
         </div>
-    )
+      </div>
+      <div className="row">
+        <div className="col-12 col-md-6 my-4">
+          <h3>Ingredients</h3>
+          <hr />
+          <table className="table table-sm table-hover">
+            <tbody>{ingredientTable}</tbody>
+          </table>
+        </div>
+        <div className="col-12 col-md-6 my-4">
+          <h3>Instructions</h3>
+          <hr />
+          <Markdown>{data.instructions}</Markdown>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default RecipeDetail
+export default RecipeDetail;

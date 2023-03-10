@@ -1,35 +1,37 @@
-import { createClient } from 'contentful';
+import { createClient } from "contentful";
 
 export const useContentful = () => {
-    const client = createClient({
-        space: process.env.REACT_APP_CONTENTFUL_SPACE_ID,
-        accessToken: process.env.REACT_APP_CONTENTFUL_PREVIEW_API_KEY,
-        host: 'preview.contentful.com',
-    })
+  const client = createClient({
+    space: process.env.REACT_APP_CONTENTFUL_SPACE_ID,
+    accessToken: process.env.REACT_APP_CONTENTFUL_PREVIEW_API_KEY,
+    host: "preview.contentful.com",
+  });
 
-    // todo needs query
-    const getRecipes = async () => {
-        try {
-            const entries = await client.getEntries({
-                content_type: 'cookbook',
-                select: 'fields',
-            })
+  // todo needs query
+  const getRecipes = async () => {
+    try {
+      const entries = await client.getEntries({
+        content_type: "cookbook",
+        select: "fields",
+      });
 
-            const sanitisedEntries = entries.items.map((item) => {
-                const id = item.sys.id
-                const imagePaths = item.fields.images.map((image) => image.fields.file.url)
+      const sanitisedEntries = entries.items.map((item) => {
+        const { id } = item.sys;
+        const imagePaths = item.fields.images.map(
+          (image) => image.fields.file.url
+        );
 
-                return {
-                    ...item.fields,
-                    id,
-                    imagePaths
-                }
-            })
+        return {
+          ...item.fields,
+          id,
+          imagePaths,
+        };
+      });
 
-            return sanitisedEntries
-        } catch (e) {
-            console.log(e)
-        }
+      return sanitisedEntries;
+    } catch (e) {
+      console.log(e);
     }
-    return { getRecipes }
-}
+  };
+  return { getRecipes };
+};

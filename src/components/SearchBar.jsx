@@ -1,16 +1,22 @@
-const SearchBar = ({ searchTerm, setSearchTerm }) => {
+import PropTypes from "prop-types";
 
-    return (
-        <>
-            <input
-                type="text"
-                className="form-control"
-                placeholder="Search"
-                onChange={(e) => setSearchTerm(e.target.value)}
-                value={searchTerm}
-            />
-        </>
-    )
+function SearchBar({ searchTerm, setSearchTerm }) {
+  return (
+    <div>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Search"
+        onChange={(e) => setSearchTerm(e.target.value)}
+        value={searchTerm}
+      />
+    </div>
+  );
 }
 
-export default SearchBar
+SearchBar.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  setSearchTerm: PropTypes.func.isRequired,
+};
+
+export default SearchBar;
