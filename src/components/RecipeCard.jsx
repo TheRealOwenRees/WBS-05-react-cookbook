@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 function RecipeCard({ id, recipe, images }) {
@@ -23,11 +22,5 @@ function RecipeCard({ id, recipe, images }) {
     </div>
   );
 }
-
-RecipeCard.propTypes = {
-  id: PropTypes.string.isRequired,
-  images: PropTypes.arrayOf(PropTypes.string).isRequired,
-  recipe: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 export default RecipeCard;

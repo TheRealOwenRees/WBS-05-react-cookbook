@@ -1,5 +1,6 @@
 import { createClient } from "contentful";
 
+// eslint-disable-next-line import/prefer-default-export
 export const useContentful = () => {
   const client = createClient({
     space: process.env.REACT_APP_CONTENTFUL_SPACE_ID,
@@ -8,6 +9,7 @@ export const useContentful = () => {
   });
 
   // todo needs query
+  // eslint-disable-next-line consistent-return
   const getRecipes = async () => {
     try {
       const entries = await client.getEntries({

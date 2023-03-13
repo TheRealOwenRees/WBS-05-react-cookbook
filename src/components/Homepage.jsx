@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import RecipeCard from "./RecipeCard";
 
 function Homepage({
@@ -19,7 +18,7 @@ function Homepage({
   useEffect(() => {
     const filtered = recipes.filter(
       (recipe) =>
-        recipe.title.toLowerCase().includes(searchTerm) &&
+        recipe.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
         selectedCategories.every(
           (category) => category.value === recipe.categories[0]
         )
@@ -41,7 +40,7 @@ function Homepage({
 
   return (
     <main className="container">
-      <div className="row">
+      <div className="row text-center">
         {filteredRecipes.map((recipe) => (
           <RecipeCard
             key={recipe.id}
@@ -53,12 +52,5 @@ function Homepage({
     </main>
   );
 }
-
-Homepage.propTypes = {
-  recipes: PropTypes.arrayOf(PropTypes.string).isRequired,
-  searchTerm: PropTypes.string.isRequired,
-  selectedCategories: PropTypes.arrayOf(PropTypes.sring).isRequired,
-  setAvailableCategories: PropTypes.func.isRequired,
-};
 
 export default Homepage;

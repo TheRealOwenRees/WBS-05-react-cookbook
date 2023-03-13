@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar";
 import SelectCategories from "./SelectCategories";
 import SearchBar from "./SearchBar";
@@ -19,11 +19,23 @@ function Header({
             <h2 className="text-uppercase">{details}</h2>
           </div>
           <div className="col-4">
-            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            <SelectCategories
-              availableCategories={availableCategories}
-              setSelectedCategories={setSelectedCategories}
-            />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <SearchBar
+                      searchTerm={searchTerm}
+                      setSearchTerm={setSearchTerm}
+                    />
+                    <SelectCategories
+                      availableCategories={availableCategories}
+                      setSelectedCategories={setSelectedCategories}
+                    />
+                  </>
+                }
+              />
+            </Routes>
           </div>
           <div className="col">
             <hr />
@@ -33,13 +45,5 @@ function Header({
     </>
   );
 }
-
-Header.propTypes = {
-  availableCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  searchTerm: PropTypes.string.isRequired,
-  setSelectedCategories: PropTypes.func.isRequired,
-  setSearchTerm: PropTypes.func.isRequired,
-  details: PropTypes.string.isRequired,
-};
 
 export default Header;

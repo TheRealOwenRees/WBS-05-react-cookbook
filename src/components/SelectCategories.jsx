@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import Select from "react-select";
 
 // adds only 1 of each category to the dropdown - removes duplicates
@@ -15,6 +14,7 @@ function SelectCategories({ availableCategories, setSelectedCategories }) {
 
   return (
     <Select
+      className="category-select"
       options={foodCategories}
       isMulti
       onChange={(opt) => setSelectedCategories(opt)}
@@ -31,10 +31,5 @@ function SelectCategories({ availableCategories, setSelectedCategories }) {
     />
   );
 }
-
-SelectCategories.propTypes = {
-  availableCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  setSelectedCategories: PropTypes.func.isRequired,
-};
 
 export default SelectCategories;

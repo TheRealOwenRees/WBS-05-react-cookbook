@@ -7,7 +7,12 @@ function RecipeDetail() {
   const data = location.state?.recipe;
 
   const recipeCarousel = data.images.map((image) => (
-    <Carousel.Item>
+    <Carousel.Item
+      style={{
+        width: "100%",
+        height: "auto",
+      }}
+    >
       <img
         className="d-block w-100"
         src={image.fields.file.url}
@@ -32,7 +37,6 @@ function RecipeDetail() {
 
   return (
     <div className="container p-4">
-      {data.title}
       <div className="row justify-content-center">
         <div className="col-12 text-center">
           <div className="row mt-2">
