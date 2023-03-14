@@ -15,6 +15,7 @@ function SelectCategories({ availableCategories, setSelectedCategories }) {
   return (
     <Select
       className="category-select"
+      placeholder="Categories"
       options={foodCategories}
       isMulti
       onChange={(opt) => setSelectedCategories(opt)}

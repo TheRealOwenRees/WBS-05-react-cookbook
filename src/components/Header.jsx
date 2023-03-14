@@ -8,15 +8,14 @@ function Header({
   setSelectedCategories,
   searchTerm,
   setSearchTerm,
-  details,
 }) {
   return (
     <>
       <Navbar />
-      <div className="container py-4">
+      <div className="container py-2">
         <div className="row align-items-baseline">
           <div className="col-8">
-            <h2 className="text-uppercase">{details}</h2>
+            <h2 className="text-uppercase">4 Recipes From Around The World</h2>
           </div>
           <div className="col-4">
             <Routes>

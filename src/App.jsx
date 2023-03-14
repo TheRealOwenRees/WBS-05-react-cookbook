@@ -14,8 +14,6 @@ function App() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [availableCategories, setAvailableCategories] = useState([]);
 
-  const details = `4 Recipes From Around The World`;
-
   useEffect(() => {
     getRecipes().then((response) => setRecipes(response));
   }, []);
@@ -27,7 +25,6 @@ function App() {
         setSelectedCategories={setSelectedCategories}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
-        details={details}
       />
       <Routes>
         <Route

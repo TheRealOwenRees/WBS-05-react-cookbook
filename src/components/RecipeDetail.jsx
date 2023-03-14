@@ -1,4 +1,4 @@
-import { Carousel } from "react-bootstrap";
+import { Button, Carousel } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import Markdown from "marked-react";
 
@@ -38,6 +38,9 @@ function RecipeDetail() {
   return (
     <div className="container p-4">
       <div className="row justify-content-center">
+        <div className="col-12">
+          <h2 className="text-uppercase text-end">{data.information}</h2>
+        </div>
         <div className="col-12 text-center">
           <div className="row mt-2">
             <Carousel>{recipeCarousel}</Carousel>
@@ -51,6 +54,12 @@ function RecipeDetail() {
           <table className="table table-sm table-hover">
             <tbody>{ingredientTable}</tbody>
           </table>
+          <Button
+            variant="outline-success"
+            onClick={() => alert(window.location.href)}
+          >
+            Share
+          </Button>
         </div>
         <div className="col-12 col-md-6 my-4">
           <h3>Instructions</h3>
