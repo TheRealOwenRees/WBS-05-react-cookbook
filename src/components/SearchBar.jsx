@@ -4,7 +4,7 @@ function SearchBar({ searchTerm, setSearchTerm }) {
       <input
         type="text"
         className="form-control recipe-search"
-        placeholder="Search"
+        placeholder="Search popular recipes"
         onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
       />

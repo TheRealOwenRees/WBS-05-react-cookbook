@@ -40,6 +40,9 @@ function Homepage({
 
   return (
     <main className="container">
+      <div className="col-12">
+        <h3 className="text-uppercase text-start">Popular Recipes</h3>
+      </div>
       <div className="row text-center">
         {filteredRecipes.map((recipe) => (
           <RecipeCard

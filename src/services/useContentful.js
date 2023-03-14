@@ -10,11 +10,12 @@ export const useContentful = () => {
 
   // todo needs query
   // eslint-disable-next-line consistent-return
-  const getRecipes = async () => {
+  const getRecipes = async (title = "") => {
     try {
       const entries = await client.getEntries({
         content_type: "cookbook",
         select: "fields",
+        "fields.title[match]": title,
       });
 
       const sanitisedEntries = entries.items.map((item) => {

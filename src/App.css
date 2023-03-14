@@ -1,4 +1,7 @@
-/* GLOBAL CSS */
+body {
+    margin-bottom: 60px;
+}
+
 h1 {
     font-size: 1.8em;
 }
@@ -36,4 +39,8 @@ nav div {
 }
 .social-icons > * {
     margin-left: 5px;
+}
+
+.main {
+     margin-bottom: 30px;
 }

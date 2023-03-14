@@ -4,7 +4,7 @@ function RecipeCard({ id, recipe, images }) {
   return (
     <div className="col-12 col-md-6 py-3" key={id}>
       <Link
-        to={`recipe/${recipe.title.replace(/\s+/g, "-")}`}
+        to={`/recipe/${recipe.title.replace(/\s+/g, "-")}`}
         state={{ recipe }}
       >
         <div>

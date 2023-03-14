@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import SelectCategories from "./SelectCategories";
 import SearchBar from "./SearchBar";
@@ -35,6 +35,11 @@ function Header({
                 }
               />
             </Routes>
+            <Link to="/search">
+              <p className="text-end" style={{ marginBottom: 0, marginTop: 5 }}>
+                Search All Recipes
+              </p>
+            </Link>
           </div>
           <div className="col">
             <hr />
